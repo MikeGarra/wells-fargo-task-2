@@ -1,17 +1,17 @@
 package com.wellsfargo.counselor.entity;
 
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Advisor {
 
     @Id
     @GeneratedValue()
-    private long advisorId;
+    private Long advisorId;
+
+    @OneToMany(mappedBy = "Advisor", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Client> clients;
 
     @Column(nullable = false)
     private String firstName;
